@@ -1,0 +1,56 @@
+.container(style='padding-top: 10px;')
+    h1
+        i.fa.fa-server
+        |  Ethereum Information
+        small View information about the Ethereum Blockchain
+    #chain.blockdiv
+        table.table.table-striped
+            tbody
+                tr
+                    th(colspan='2', style='text-align:left') Summary
+                tr
+                    td Current Block
+                    td
+                        a(href='./#/block/{{ blockNum }}') {{ blockNum }}
+                tr
+                    td Block Time
+                    td
+                        | {{ blocktime }} seconds since block
+                        a(href='./#/block/{{ blockNum - 1 }}') {{ blockNum - 1 }}
+                        br
+                tr
+                    td Block Time Averages
+                    td
+                        table(style='width:100%')
+                            tbody
+                                tr
+                                    td
+                                        | {{ blocktimeAverage1 }} seconds for the past 100 blocks
+                                        br
+                                        |                     {{ blocktimeAverage2 }} seconds for the past 1,000 blocks
+                                    td
+                                        | {{ blocktimeAverage3 }} seconds for the past 10,000 blocks
+                                        br
+                                        |                     {{ blocktimeAverage4 }} seconds for the past 100,000 blocks
+                                tr
+                                    td
+                                        | {{ blocktimeAverageAll }} seconds for all {{blockNum}} blocks
+                tr
+                    td Current Difficulty
+                    td {{ difficulty_formatted }}
+                tr
+                    td Total Difficulty
+                    td {{ totalDifficulty_formatted }}
+                tr
+                    td Gas Limit
+                    td {{ gasLimit }}
+                tr
+                    td Time
+                    td {{ time }}
+                tr
+                    td Connected to ETH Network
+                    td {{ isConnected }}
+                tr
+                    td API/Client Version
+                    td {{ versionApi }} - {{ versionClient }}
+        hr

@@ -1,0 +1,92 @@
+doctype html
+//if lt IE 7
+  html.no-js.lt-ie9.lt-ie8.lt-ie7(lang='en', ng-app='ethExplorer')
+//if IE 7
+  html.no-js.lt-ie9.lt-ie8(lang='en', ng-app='ethExplorer')
+//if IE 8
+  html.no-js.lt-ie9(lang='en', ng-app='ethExplorer')
+// [if gt IE 8] <!
+html.no-js(lang='en', ng-app='ethExplorer')
+  // <![endif]
+  head
+    base(href='/')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title Ethereum Block Explorer
+    meta(name='description', content='An Ethereum (ETH) Block Explorer')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css')
+    script(src='https://use.fontawesome.com/9376283190.js')
+    script(src='/javascripts/web3/web3.min.js')
+  body
+    nav.navbar.navbar-dark.navbar-static-top(role='navigation')
+      .container
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-collapse-1')
+            span.sr-only Toggle navigation
+            i.fa.fa-bars
+          a.navbar-brand(href='./#/') ETHER EXPLORER
+        #navbar-collapse-1.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='./#/') Home
+            li
+              a(href='./#/chain') Blockchain Info
+          .col-sm-3.col-md-3.pull-right
+            form.navbar-form(ng-controller='mainCtrl', ng-submit='processRequest()', name='search_form', role='search')
+              .input-group
+                input.form-control.searchi(type='text', placeholder='Tx Hash, Address, or Block #', name='requestType', required='', ng-model='ethRequest')
+                .input-group-btn
+                  button.btn.btn-primary.btn-blue(type='submit')
+                    i.fa.fa-search
+    div(ng-view='')
+    // Libs
+    script(src='/javascripts/angular.min.js')
+    script(src='/bower_components/angular-sanitize/angular-sanitize.js')
+    script(src='/bower_components/angular-bootstrap/ui-bootstrap.min.js')
+    script(src='/bower_components/angular-route/angular-route.js')
+    script(src='/javascripts/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+    // Core
+    script(src='/javascripts/app.js')
+    // Controllers
+    script(src='/javascripts/controllers/mainController.js')
+    script(src='/javascripts/controllers/addressInfosController.js')
+    script(src='/javascripts/controllers/chainInfosController.js')
+    script(src='/javascripts/controllers/blockInfosController.js')
+    script(src='/javascripts/controllers/transactionInfosController.js')
+    // jQuery
+    script.
+        function shapeshift_click(a,e) {
+            e.preventDefault();
+            var link=a.href;
+            window.open(link,'1418115287605','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=0,left=0,top=0');
+            return false;
+        }
+    // Services
+    #connectwarning.modal.fade(role='dialog')
+      // begin AltSheets
+      #connectwarning-dialog.modal-dialog
+        // end AltSheets
+        // Modal content
+        .modal-content
+          center
+            .modal-header
+              h4.modal-title Allow Access to Geth and Refresh the Page
+            .modal-body
+              code
+                p#modaltext
+    .footer.styledfoot
+      footer
+        br
+        |             © ETHER EXPLORER 2016
+        a(href='http://github.com/carsenk/explorer') Fork me on GitHub
+        br
+        |             Helpful Links: ethereum.org | gdax.com | coinbase.com | bitcv.one
+        br
+    script.
+        //begin AltSheets
+        $("#modaltext").text( geth_command );
+        // end AltSheets
