@@ -12,11 +12,16 @@ angular.module('ethExplorer')
 
         web3.eth.filter("latest", function(error, result){
             if (!error) {
-                getETHRates();
-                updateBlockList();
-                updateTXList();
-                updateStats();
-                getHashrate();
+                if(Math.random() < 0.1) {
+                    getETHRates();
+                    getHashrate();
+                }
+                if(Math.random()<0.3)
+                {
+                   updateBlockList();
+                   updateTXList();
+                   updateStats();
+                }
                 $scope.$apply();
             }
         });

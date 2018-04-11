@@ -16,7 +16,7 @@ angular.module('ethExplorer')
                     .then(function(result){
                         //TODO Refactor this logic, asynchron calls + services....
                     //var number = web3.eth.syncing.currentBlock;
-                        var number = web3.eth.blockNumber;
+                    var number = web3.eth.blockNumber;
 
                     $scope.result = result;
 
